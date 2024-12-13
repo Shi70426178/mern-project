@@ -24,7 +24,7 @@ const Profile = ({ handleLogout }) => {
                 console.error('No token found');
                 return;
             }
-            const res = await axios.get('http://localhost:5000/api/auth/profile', {
+            const res = await axios.get('https://mern-project-5-xoai.onrender.com/api/auth/profile', {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             localStorage.setItem('user_id', res.data._id); // Store user ID
@@ -52,7 +52,7 @@ const Profile = ({ handleLogout }) => {
                 console.error('No token found');
                 return;
             }
-            const res = await axios.post('http://localhost:5000/api/auth/profile/update', {
+            const res = await axios.post('https://mern-project-5-xoai.onrender.com/api/auth/profile/update', {
                 name: profile.name
             }, {
                 headers: { 'Authorization': `Bearer ${token}` }
@@ -82,7 +82,7 @@ const Profile = ({ handleLogout }) => {
                 console.error('No token found');
                 return;
             }
-            const res = await axios.post('http://localhost:5000/api/auth/user/change-password', {
+            const res = await axios.post('https://mern-project-5-xoai.onrender.com/api/auth/user/change-password', {
                 currentPassword,
                 newPassword
             }, {
@@ -114,7 +114,7 @@ const Profile = ({ handleLogout }) => {
                 console.error('No token found');
                 return;
             }
-            const res = await axios.post('http://localhost:5000/api/auth/profile/upload-image', formData, {
+            const res = await axios.post('https://mern-project-5-xoai.onrender.com/api/auth/profile/upload-image', formData, {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                     'Content-Type': 'multipart/form-data'
@@ -141,7 +141,7 @@ const Profile = ({ handleLogout }) => {
                 console.error('No token or user ID found');
                 return;
             }
-            const res = await axios.post('http://localhost:5000/api/payment/create-checkout-session', 
+            const res = await axios.post('https://mern-project-5-xoai.onrender.com/api/payment/create-checkout-session', 
             { 
                 amount: parseFloat(amount),
                 client_reference_id: userId  // Include client reference ID
@@ -169,7 +169,7 @@ const Profile = ({ handleLogout }) => {
                 console.error('No token found');
                 return;
             }
-            const res = await axios.post('http://localhost:5000/api/auth/wallet/withdraw', { amount: parseFloat(amount) }, {
+            const res = await axios.post('https://mern-project-5-xoai.onrender.com/api/auth/wallet/withdraw', { amount: parseFloat(amount) }, {
                 headers: { 'Authorization': `Bearer ${token}` }
             });
             setProfile({ ...profile, wallet: res.data.wallet });
@@ -193,7 +193,7 @@ const Profile = ({ handleLogout }) => {
                     <h2>Profile</h2>
                     <div>
                         <img
-                            src={profile.profilePicture ? `http://localhost:5000${profile.profilePicture}` : '/assets/logo192.png'}
+                            src={profile.profilePicture ? `https://mern-project-5-xoai.onrender.com${profile.profilePicture}` : '/assets/logo192.png'}
                             alt="Profile"
                             onClick={() => document.getElementById('profileImageInput').click()}
                             className={styles.profileImage}

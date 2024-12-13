@@ -11,7 +11,7 @@ const PremiumProducts = () => {
     useEffect(() => {
         const fetchPremiumProducts = async () => {
             try {
-                const res = await axios.get('http://localhost:5000/api/products/premium');
+                const res = await axios.get('https://mern-project-5-xoai.onrender.com/api/products/premium');
                 if (Array.isArray(res.data)) {
                     setPremiumProducts(res.data);
                 } else {
@@ -31,7 +31,7 @@ const PremiumProducts = () => {
         console.log('Username for purchase:', username); // Debugging line to verify username
 
         try {
-            const res = await axios.post(`http://localhost:5000/api/products/premium/${productId}/buy`, { username }, {
+            const res = await axios.post(`https://mern-project-5-xoai.onrender.com/api/products/premium/${productId}/buy`, { username }, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -60,7 +60,7 @@ const PremiumProducts = () => {
                             <p>{product.description}</p>
                             <p>Price: ${product.price}</p>
                             {purchasedProducts.includes(product._id) ? (
-                                <a href={`http://localhost:5000/api/products/files/${product.fileUrl.split('/').pop()}`} download>Download</a>
+                                <a href={`https://mern-project-5-xoai.onrender.com/api/products/files/${product.fileUrl.split('/').pop()}`} download>Download</a>
                             ) : (
                                 <button onClick={() => handleBuy(product._id)}>Buy Now</button>
                             )}

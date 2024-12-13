@@ -13,7 +13,7 @@ const Dashboard = ({ handleLogout }) => {
             try {
                 const token = localStorage.getItem('token');
                 if (token) {
-                    const res = await axios.get('http://localhost:5000/api/auth/dashboard', {
+                    const res = await axios.get('https://mern-project-5-xoai.onrender.com/api/auth/dashboard', {
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
                     setUser(res.data.user);

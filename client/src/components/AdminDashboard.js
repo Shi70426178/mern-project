@@ -16,7 +16,7 @@ const AdminDashboard = ({ handleLogout }) => {
                     console.error('No token found');
                     return;
                 }
-                const res = await axios.get('http://localhost:5000/api/admin/users', {
+                const res = await axios.get('https://mern-project-5-xoai.onrender.com/api/admin/users', {
                     headers: { 'Authorization': `Bearer ${token}` }
                 });
                 setUsers(res.data);
@@ -34,7 +34,7 @@ const AdminDashboard = ({ handleLogout }) => {
         const newEmail = prompt('Enter new email:', user.email);
         const newUsername = prompt('Enter new username:', user.username);
 
-        axios.put(`http://localhost:5000/api/admin/users/${user._id}`, {
+        axios.put(`https://mern-project-5-xoai.onrender.com/api/admin/users/${user._id}`, {
             name: newName,
             email: newEmail,
             username: newUsername
@@ -48,7 +48,7 @@ const AdminDashboard = ({ handleLogout }) => {
     };
 
     const handleDelete = (userId) => {
-        axios.delete(`http://localhost:5000/api/admin/users/${userId}`, {
+        axios.delete(`https://mern-project-5-xoai.onrender.com/api/admin/users/${userId}`, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
         }).then(res => {
             setUsers(users.filter(user => user._id !== userId));
@@ -60,7 +60,7 @@ const AdminDashboard = ({ handleLogout }) => {
     const handleChangeRole = (user) => {
         const isAdmin = confirm('Make this user an admin?');
 
-        axios.put(`http://localhost:5000/api/admin/users/${user._id}/role`, {
+        axios.put(`https://mern-project-5-xoai.onrender.com/api/admin/users/${user._id}/role`, {
             isAdmin
         }, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
@@ -78,7 +78,7 @@ const AdminDashboard = ({ handleLogout }) => {
             return;
         }
 
-        axios.post(`http://localhost:5000/api/admin/users/${user._id}/wallet/add`, {
+        axios.post(`https://mern-project-5-xoai.onrender.com/api/admin/users/${user._id}/wallet/add`, {
             amount
         }, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }
@@ -96,7 +96,7 @@ const AdminDashboard = ({ handleLogout }) => {
             return;
         }
 
-        axios.post(`http://localhost:5000/api/admin/users/${user._id}/wallet/withdraw`, {
+        axios.post(`https://mern-project-5-xoai.onrender.com/api/admin/users/${user._id}/wallet/withdraw`, {
             amount
         }, {
             headers: { 'Authorization': `Bearer ${localStorage.getItem('token')}` }

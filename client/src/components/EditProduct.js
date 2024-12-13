@@ -14,7 +14,7 @@ const EditProduct = () => {
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/products/${id}`, {
+                const res = await axios.get(`https://mern-project-5-xoai.onrender.com/api/products/${id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
@@ -32,7 +32,7 @@ const EditProduct = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.put(`http://localhost:5000/api/products/${id}`, { name, description, price }, {
+            const res = await axios.put(`https://mern-project-5-xoai.onrender.com/api/products/${id}`, { name, description, price }, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }

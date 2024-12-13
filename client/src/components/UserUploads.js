@@ -10,7 +10,7 @@ const UserUploads = ({ username }) => {
     useEffect(() => {
         const fetchUploads = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/products?username=${username}`);
+                const res = await axios.get(`https://mern-project-5-xoai.onrender.com/api/products?username=${username}`);
                 if (Array.isArray(res.data)) {
                     setUploads(res.data);
                 } else {
