@@ -1,0 +1,294 @@
+:root {
+    --primary-color: #24292e; /* GitHub-like primary color */
+    --secondary-color: #0366d6; /* GitHub-like link color */
+    --background-color: #fafbfc; /* GitHub-like background */
+    --border-color: #e1e4e8; /* GitHub-like border color */
+    --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: #24292e;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.home-text {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: red;
+    font-size: 24px;
+    font-weight: bold;
+    color: #1c77e0;
+}
+
+.content {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.content p {
+    font-size: 18px;
+    color: #333;
+}
+
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 20px;
+    box-shadow: 0 1px 3px rgba(27, 31, 35, 0.12), 0 8px 24px rgba(27, 31, 35, 0.08);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    
+}
+
+.header-title {
+    
+    background: none;
+    color: rgb(235, 15, 15);
+    padding: 4px ;
+    
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.dropdown {
+    position: relative;
+    padding-right: 45px;
+    
+}
+
+.dropdown-button {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px ;
+    
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    padding-right: 50px;
+    right: 0;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: var(--primary-color);
+    padding: 12px 16px;
+    padding-right: 50px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: var(--background-color);
+    padding-right: 80px;
+
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    padding-right: 80px;
+}
+
+.dropdown:hover .dropdown-button {
+    background-color: #2c333b;
+    padding-right: 100px;
+}
+
+.content {
+    margin-top: 60px; /* Adjust for fixed header */
+    padding: 20px;
+    width: 100%;
+    padding-right: 50px;
+}
+
+.form {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 20px;
+    margin-top: 20px;
+    box-shadow: 0 1px 3px rgba(27, 31, 35, 0.12), 0 8px 24px rgba(27, 31, 35, 0.08);
+}
+
+.form input {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background-color: #fafbfc;
+}
+
+.form button {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form button:hover {
+    background-color: #0353bd;
+}
+
+.footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    color: var(--primary-color);
+}
+
+/* Dashboard container styles */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding-top: 60px; /* Adjust for fixed header */
+}
+
+/* Media Queries for Responsiveness */
+
+/* Large devices (desktops, 1200px and up) */
+@media (max-width: 1200px) {
+    .container {
+        max-width: 90%;
+    }
+
+    .form {
+        padding: 15px;
+    }
+}
+
+/* Medium devices (tablets, 992px and up) */
+@media (max-width: 992px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-title {
+        margin-bottom: 10px;
+    }
+
+    .dropdown {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .dropdown-button {
+        width: auto;
+    }
+
+    .dropdown-content {
+        width: 100%;
+        left: 0;
+        
+    }
+
+    .content {
+        padding: 10px;
+    }
+}
+
+/* Small devices (landscape phones, 768px and up) */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-title {
+        margin-bottom: 10px;
+    }
+
+    .dropdown {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .dropdown-button {
+        width: auto;
+    }
+
+    .dropdown-content {
+        width: 100%;
+        left: 0;
+    }
+
+    .content {
+        padding: 10px;
+    }
+}
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 576px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-title {
+        margin-bottom: 10px;
+    }
+
+    .dropdown {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+
+    .dropdown-button {
+        width: auto;
+    }
+
+    .dropdown-content {
+        width: 100%;
+        left: 0;
+    }
+
+    .content {
+        padding: 10px;
+    }
+}

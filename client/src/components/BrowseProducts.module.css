@@ -1,0 +1,125 @@
+.container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    text-align: center;
+    margin-top: 50px;
+    font-size: 2em;
+    color: #333;
+}
+
+.searchInput {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.productGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.productCard {
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s;
+}
+
+.productCard:hover {
+    transform: translateY(-10px);
+}
+
+.productCard h3 {
+    font-size: 1.5em;
+    color: #007bff;
+}
+
+.productCard p {
+    font-size: 1em;
+    color: #555;
+}
+
+.productCard a {
+    display: block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.productCard a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.commentsSection {
+    margin-top: 20px;
+}
+
+.commentsSection p {
+    font-size: 0.9em;
+    color: #555;
+}
+
+.commentsSection form {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.commentsSection input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.commentsSection button {
+    padding: 10px 20px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+}
+
+.commentsSection button:hover {
+    background-color: #218838;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .productCard {
+        padding: 15px;
+    }
+
+    .productCard h3 {
+        font-size: 1.2em;
+    }
+
+    .productCard p {
+        font-size: 0.9em;
+    }
+}
