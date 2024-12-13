@@ -11,6 +11,7 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 // Serve static files from the uploads directory
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
@@ -18,6 +19,8 @@ const authRoutes = require("./routes/auth");
 const paymentRoutes = require("./routes/payment");
 const adminRoutes = require("./routes/admin");
 const productsRoutes = require("./routes/products");
+
+
 
 app.use("/api/auth", authRoutes);
 app.use("/api/payment", paymentRoutes);
