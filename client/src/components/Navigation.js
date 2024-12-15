@@ -12,11 +12,11 @@ const Navigation = ({ handleLogout }) => {
                     <Link to="/browse-products">Browse Products</Link>
                     <Link to="/premium-products">Premium Products</Link>
                     <Link to="/sell-premium">Sell Premium</Link>
-                    <Link to="/sell">Sell</Link>
+                    <Link to="/sell">Upload</Link>
                     <Link to="/about">About Us</Link>
                     <Link to="/contact">Contact Us</Link>
                     <Link to="/profile">Profile</Link>
-                    <Link to="/admin">Admin Dashboard</Link>
+                    {/* <Link to="/admin">Admin Dashboard</Link> */}
                 
                     <a href="#logout" onClick={handleLogout}>Logout</a>
                 </div>

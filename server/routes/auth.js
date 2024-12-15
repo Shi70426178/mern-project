@@ -22,106 +22,111 @@ const upload = multer({ storage });
 
 // Signup route
 // Signup route
-router.post('/signup', async (req, res) => {
-    const { name, email, username, password } = req.body;
+router.post("/signup", async (req, res) => {
+  const { name, email, username, password } = req.body;
 
-    try {
-        let user = await User.findOne({ email });
-        if (user) {
-            return res.status(400).json({ msg: 'User already exists' });
-        }
-
-        user = new User({
-            name,
-            email,
-            username,
-            password,
-            isAdmin: true // Automatically set new users as admin
-        });
-
-        const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash(password, salt);
-        await user.save();
-
-        const profile = new Profile({
-            userId: user.id,
-            name,
-            email,
-            username,
-            profilePicture: './assets/logo192.png', // Set default image path
-            wallet: 0 // Initialize wallet with 0 balance
-        });
-        await profile.save();
-
-        const payload = {
-            user: {
-                id: user.id,
-                isAdmin: user.isAdmin // Include isAdmin in payload
-            }
-        };
-
-        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 360000 }, (err, token) => {
-            if (err) throw err;
-            res.json({ token });
-        });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
+  try {
+    let user = await User.findOne({ email });
+    if (user) {
+      return res.status(400).json({ msg: "User already exists" });
     }
+
+    user = new User({
+      name,
+      email,
+      username,
+      password,
+      isAdmin: true, // Automatically set new users as admin
+    });
+
+    const salt = await bcrypt.genSalt(10);
+    user.password = await bcrypt.hash(password, salt);
+    await user.save();
+
+    const profile = new Profile({
+      userId: user.id,
+      name,
+      email,
+      username,
+      profilePicture: "./assets/logo192.png", // Set default image path
+      wallet: 0, // Initialize wallet with 0 balance
+    });
+    await profile.save();
+
+    const payload = {
+      user: {
+        id: user.id,
+        isAdmin: user.isAdmin, // Include isAdmin in payload
+      },
+    };
+
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: 360000 },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token });
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
 });
 
 // Login route
-router.post('/login', async (req, res) => {
-    const { email, password } = req.body;
+router.post("/login", async (req, res) => {
+  const { email, password } = req.body;
 
-    try {
-        let user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).json({ msg: 'Invalid credentials' });
-        }
-
-        const isMatch = await bcrypt.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(400).json({ msg: 'Invalid credentials' });
-        }
-
-        const payload = {
-            user: {
-                id: user.id,
-                isAdmin: user.isAdmin, // Include isAdmin in payload
-                username: user.username // Include username in payload
-            }
-        };
-
-        jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: 360000 }, (err, token) => {
-            if (err) throw err;
-            res.json({ token, username: user.username }); // Return token and username
-        });
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server error');
+  try {
+    let user = await User.findOne({ email });
+    if (!user) {
+      return res.status(400).json({ msg: "Invalid credentials" });
     }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).json({ msg: "Invalid credentials" });
+    }
+
+    const payload = {
+      user: {
+        id: user.id,
+        isAdmin: user.isAdmin, // Include isAdmin in payload
+        username: user.username, // Include username in payload
+      },
+    };
+
+    jwt.sign(
+      payload,
+      process.env.JWT_SECRET,
+      { expiresIn: 360000 },
+      (err, token) => {
+        if (err) throw err;
+        res.json({ token, username: user.username }); // Return token and username
+      }
+    );
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server error");
+  }
 });
-
-
-
-
 
 // Get profile details
 // Get profile details
-router.get('/profile', auth, async (req, res) => {
-    try {
-        const user = await User.findById(req.user.id);
-        if (!user) {
-            return res.status(404).json({ msg: 'Profile not found' });
-        }
-        res.json(user);
-    } catch (err) {
-        console.error('Error fetching profile:', err.message);
-        res.status(500).send('Server error');
+router.get("/profile", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    if (!user) {
+      return res.status(404).json({ msg: "Profile not found" });
     }
+    res.json(user);
+  } catch (err) {
+    console.error("Error fetching profile:", err.message);
+    res.status(500).send("Server error");
+  }
 });
-
 
 // Update profile details
 router.post("/profile/update", auth, async (req, res) => {
@@ -233,6 +238,16 @@ router.post("/user/change-password", auth, async (req, res) => {
   } catch (err) {
     console.error(err.message);
     res.status(500).send("Server error");
+  }
+});
+
+router.get("/dashboard", auth, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id).select("-password");
+    res.json({ user });
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Server Error");
   }
 });
 

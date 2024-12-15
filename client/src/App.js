@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Dashboard from './components/Dashboard';
@@ -12,22 +12,23 @@ import BrowseProducts from './components/BrowseProducts';
 import Sell from './components/Sell';
 import UserUploads from './components/UserUploads';
 import PremiumProducts from './components/PremiumProducts';
-import SellPremium from './components/SellPremium'; // Import the new component
+import SellPremium from './components/SellPremium';
 import Navigation from './components/Navigation';
-
 
 const App = () => {
     const handleLogout = () => {
         localStorage.removeItem('token');
-        localStorage.removeItem('username'); // Clear username
-        window.location.href = '/'; // Redirect to the login page
+        localStorage.removeItem('username');
+        window.location.href = '/';
     };
 
-    const username = localStorage.getItem('username'); // Get username from local storage
+    const username = localStorage.getItem('username');
+    const location = useLocation();
+    const noNavRoutes = ['/', '/signup']; // Routes where Navigation should not appear
 
     return (
-        <Router>
-            <Navigation />
+        <>
+            {!noNavRoutes.includes(location.pathname) && <Navigation />}
             <Routes>
                 <Route path="/" element={<Login />} />
                 <Route path="/signup" element={<Signup />} />
@@ -35,15 +36,15 @@ const App = () => {
                 <Route path="/about" element={<AboutUs handleLogout={handleLogout} />} />
                 <Route path="/contact" element={<ContactUs handleLogout={handleLogout} />} />
                 <Route path="/profile" element={<Profile handleLogout={handleLogout} />} />
-                <Route element={<ProtectedRoute isAdmin={true} />} />
                 <Route path="/sell" element={<Sell username={username} />} />
                 <Route path="/admin" element={<AdminDashboard />} /> {/* Use ProtectedRoute for Admin Dashboard */}
                 <Route path="/browse-products" element={<BrowseProducts username={username} />} />
                 <Route path="/user-uploads" element={<UserUploads username={username} />} />
                 <Route path="/premium-products" element={<PremiumProducts />} />
                 <Route path="/sell-premium" element={<SellPremium username={username} />} />
+                {/* Add other routes as needed */}
             </Routes>
-        </Router>
+        </>
     );
 };
 

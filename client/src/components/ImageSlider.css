@@ -1,0 +1,76 @@
+.image-slider {
+    margin: 20px auto;
+    max-width: 800px;
+    overflow: hidden;
+    border-radius: 15px; /* Add rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add shadow for a better visual effect */
+    position: relative; /* For additional elements positioning */
+}
+
+.slider-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center the image */
+    transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Smooth transition for transform and filter */
+}
+
+.slider-image:hover {
+    transform: scale(1.05); /* Slight zoom on hover for visual effect */
+    filter: brightness(85%); /* Slightly darken on hover */
+}
+
+/* Dots styling */
+.slick-dots li button:before {
+    font-size: 12px;
+    color: #fff; /* White color dots */
+}
+
+.slick-dots li.slick-active button:before {
+    color: #007bff; /* Highlight active dot with primary color */
+}
+
+/* Add arrows for better navigation */
+.slick-prev:before, .slick-next:before {
+    font-size: 24px;
+    color: #007bff; /* Primary color for arrows */
+}
+
+.slick-prev:hover:before, .slick-next:hover:before {
+    color: #0056b3; /* Darken color on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .image-slider {
+        max-width: 700px;
+    }
+
+    .slider-image {
+        max-height: 400px; /* Reduce image height for tablets */
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .image-slider {
+        max-width: 500px;
+    }
+
+    .slider-image {
+        max-height: 300px; /* Further reduce image height for small tablets */
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 600px) {
+    .image-slider {
+        max-width: 100%;
+        border-radius: 10px; /* Slightly smaller rounded corners */
+    }
+
+    .slider-image {
+        max-height: 200px; /* Reduce image height for mobile devices */
+        margin-top: 40px;
+    }
+}
