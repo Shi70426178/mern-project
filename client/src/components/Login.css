@@ -1,0 +1,115 @@
+/* Login.css (Scoped to login-page only) */
+
+.login-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #74ebd5, #acb6e5);
+  padding: 20px;
+}
+
+.login-form {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 40px 30px;
+  max-width: 400px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  animation: slideFade 0.4s ease-in;
+  text-align: center;
+}
+
+@keyframes slideFade {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.login-form h2 {
+  margin-bottom: 20px;
+  color: #00695c;
+}
+
+.login-header#he1 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #004d40;
+  margin-bottom: 8px;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 12px 0;
+  border: none;
+  border-radius: 8px;
+  background-color: #ffffffee;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.login-form input:focus {
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 150, 136, 0.4);
+}
+
+.login-form button {
+  width: 100%;
+  padding: 14px;
+  background-color: #00796b;
+  color: white;
+  border: none;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 8px;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.login-form button:hover {
+  background-color: #004d40;
+}
+
+.login-form p {
+  margin-top: 18px;
+  font-size: 14px;
+  color: #333;
+}
+
+.login-form a {
+  color: #00796b;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.login-form a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .login-form {
+    padding: 30px 20px;
+  }
+
+  .login-header#he1 {
+    font-size: 18px;
+  }
+
+  .login-form h2 {
+    font-size: 20px;
+  }
+
+  .login-form input,
+  .login-form button {
+    font-size: 14px;
+  }
+}
