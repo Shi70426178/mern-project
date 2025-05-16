@@ -3,7 +3,7 @@ const router = express.Router();
 const adminAuth = require('../middleware/adminAuth');
 const User = require('../models/User');
 
-// Get all users
+// Get all users 
 router.get('/users', adminAuth, async (req, res) => {
     try {
         const users = await User.find({});
@@ -110,3 +110,7 @@ router.post('/users/:id/wallet/withdraw', adminAuth, async (req, res) => {
 });
 
 module.exports = router;
+
+
+
+// configuration of three routers
