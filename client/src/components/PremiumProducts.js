@@ -1,23 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import styles from './PremiumProducts.module.css'; // Ensure this CSS module exists
+import styles from './PremiumProducts.module.css';
 
 const PremiumProducts = () => {
     const [premiumProducts, setPremiumProducts] = useState([]);
     const [message, setMessage] = useState('');
     const [purchasedProducts, setPurchasedProducts] = useState([]);
-    const username = localStorage.getItem('username'); // Retrieve username from local storage
+    const username = localStorage.getItem('username');
 
     useEffect(() => {
         const fetchPremiumProducts = async () => {
             try {
-                const res = await axios.get('https://mern-project-5-xoai.onrender.com/api/products/premium');
+                const res = await axios.get('http://localhost:5000/api/products/premium');
                 if (Array.isArray(res.data)) {
                     setPremiumProducts(res.data);
                 } else {
                     console.error('Unexpected response data:', res.data);
                 }
-                console.log('Premium products fetched successfully:', res.data);
             } catch (err) {
                 console.error('Error fetching premium products:', err);
                 setMessage('Error fetching premium products');
@@ -27,18 +26,14 @@ const PremiumProducts = () => {
     }, []);
 
     const handleBuy = async (productId) => {
-        console.log('Purchasing product ID:', productId); // Debugging line to verify product ID
-        console.log('Username for purchase:', username); // Debugging line to verify username
-
         try {
-            const res = await axios.post(`https://mern-project-5-xoai.onrender.com/api/products/premium/${productId}/buy`, { username }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
+            const res = await axios.post(
+                `http://localhost:5000/api/products/premium/${productId}/buy`,
+                { username },
+                { headers: { 'Content-Type': 'application/json' } }
+            );
             if (res.data && res.data.message === 'Purchase successful') {
-                setPurchasedProducts([...purchasedProducts, productId]);
-                console.log('Product purchased successfully:', res.data);
+                setPurchasedProducts(prev => [...prev, productId]);
             } else {
                 console.error('Unexpected response data:', res.data);
             }
@@ -50,28 +45,39 @@ const PremiumProducts = () => {
 
     return (
         <div className={styles.container}>
-            <h2>Premium Products</h2>
+            <h2 className={styles.title}>Premium Products</h2>
             {message && <p className={styles.error}>{message}</p>}
             <div className={styles.productGrid}>
                 {premiumProducts.length > 0 ? (
                     premiumProducts.map(product => (
                         <div key={product._id} className={styles.productCard}>
-                            <h3>{product.name}</h3>
-                            <p>{product.description}</p>
-                            <p>Price: ${product.price}</p>
+                            <h3 className={styles.productName}>{product.name}</h3>
+                            <p className={styles.description}>{product.description}</p>
+                            <p className={styles.price}>Price: <span>${product.price.toFixed(2)}</span></p>
                             {purchasedProducts.includes(product._id) ? (
-                                <a href={`https://mern-project-5-xoai.onrender.com/api/products/files/${product.fileUrl.split('/').pop()}`} download>Download</a>
+                                <a
+                                    className={styles.downloadBtn}
+                                    href={`http://localhost:5000/api/products/files/${product.fileUrl.split('/').pop()}`}
+                                    download
+                                >
+                                    Download
+                                </a>
                             ) : (
-                                <button onClick={() => handleBuy(product._id)}>Buy Now</button>
+                                <button
+                                    className={styles.buyBtn}
+                                    onClick={() => handleBuy(product._id)}
+                                >
+                                    Buy Now
+                                </button>
                             )}
                             <div className={styles.details}>
-                                <p>Likes: {product.likes}</p>
-                                <p>Comments: {product.comments.length}</p>
+                                <p>👍 Likes: {product.likes}</p>
+                                <p>💬 Comments: {product.comments.length}</p>
                             </div>
                         </div>
                     ))
                 ) : (
-                    <p>No premium products found</p>
+                    <p className={styles.noProducts}>No premium products found.</p>
                 )}
             </div>
         </div>

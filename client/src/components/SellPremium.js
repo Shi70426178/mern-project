@@ -28,7 +28,7 @@ const SellPremium = ({ username }) => {
         formData.append('isPremium', true); // Mark the product as premium
 
         try {
-            const res = await axios.post('https://mern-project-5-xoai.onrender.com/api/products/premium', formData, {
+            const res = await axios.post('http://localhost:5000/api/products/premium', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

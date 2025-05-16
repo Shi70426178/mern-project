@@ -24,7 +24,7 @@ const Sell = ({ username }) => {
         formData.append('username', username);
 
         try {
-            const res = await axios.post('https://mern-project-5-xoai.onrender.com/api/products', formData, {
+            const res = await axios.post('http://localhost:5000/api/products', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

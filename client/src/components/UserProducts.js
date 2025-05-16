@@ -10,7 +10,7 @@ const UserProducts = () => {
     useEffect(() => {
         const fetchProducts = async () => {
             try {
-                const res = await axios.get('https://mern-project-5-xoai.onrender.com/api/products/my-products', {
+                const res = await axios.get('http://localhost:5000/api/products/my-products', {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`
                     }
@@ -25,7 +25,7 @@ const UserProducts = () => {
 
     const handleDelete = async (productId) => {
         try {
-            await axios.delete(`https://mern-project-5-xoai.onrender.com/api/products/${productId}`, {
+            await axios.delete(`http://localhost:5000/api/products/${productId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`
                 }

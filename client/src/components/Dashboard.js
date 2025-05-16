@@ -14,7 +14,7 @@ const Dashboard = ({ handleLogout }) => {
             try {
                 const token = localStorage.getItem('token');
                 if (token) {
-                    const res = await axios.get('https://mern-project-5-xoai.onrender.com/api/auth/dashboard', {
+                    const res = await axios.get('http://localhost:5000/api/auth/dashboard', {
                         headers: { 'Authorization': `Bearer ${token}` }
                     });
                     setUser(res.data.user);
@@ -62,6 +62,16 @@ const Dashboard = ({ handleLogout }) => {
                     <h1>Java</h1>
                     <p>500+ Java Projects</p>
                     <img src="/assets/image4.jpg" alt="Expert Support" />
+                </div>
+                <div className="extra-container">
+                    <h1>Android</h1>
+                    <p>100+ Full Stack Projects</p>
+                    <img src="/assets/image3.jpg" alt="Exclusive Offers" />
+                </div>
+                <div className="extra-container">
+                    <h1>Python</h1>
+                    <p>1000+ Designs </p>
+                    <img src="/assets/image1.jpg" alt="Global Community" />
                 </div>
             </div>
             <footer className="footer">
